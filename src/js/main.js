@@ -21,7 +21,11 @@ function headerInteraction(){
       if (e.key === "Enter") {
         const keyword = navInput.value.trim();
         if (keyword !== "") {
-          window.location.href = `katalog.html?search=${encodeURIComponent(keyword)}`;
+          if (currentPage == "index.html") {
+            window.location.href = `src.pages.user.katalog.html?search=${encodeURIComponent(keyword)}`;
+          } else {
+            window.location.href = `katalog.html?search=${encodeURIComponent(keyword)}`;
+          }
         }
       }
     });
