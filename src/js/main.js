@@ -10,7 +10,9 @@ function headerInteraction(){
     searchToggle.addEventListener("click", () => {
       navSearch.classList.toggle("active");
       logo.classList.toggle("hidden");
-      navInput.focus();
+      if (navInput) {
+        navInput.focus();
+      }
     });
   }
   
@@ -19,7 +21,11 @@ function headerInteraction(){
       if (e.key === "Enter") {
         const keyword = navInput.value.trim();
         if (keyword !== "") {
-          window.location.href = `katalog.html?search=${encodeURIComponent(keyword)}`;
+          if (currentPage == "index.html") {
+            window.location.href = `src.pages.user.katalog.html?search=${encodeURIComponent(keyword)}`;
+          } else {
+            window.location.href = `katalog.html?search=${encodeURIComponent(keyword)}`;
+          }
         }
       }
     });
@@ -33,13 +39,13 @@ function headerInteraction(){
   }
   
   // HAMBURGER
-  const hamburger = document.getElementById("hamburger");
+  const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".menu");
   
-  if (hamburger) {
-      hamburger.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-      });  
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
   }
 }
 
